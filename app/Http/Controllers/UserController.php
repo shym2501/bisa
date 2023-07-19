@@ -9,11 +9,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Spatie\Permission\Models\Permission;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,7 +20,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::with('roles')->orderBy('id','ASC')->paginate(5);
+        $loggedInUserId = Auth::id();
+
+        $users = User::with('roles')->where('id', '<>', $loggedInUserId)->orderBy('id','ASC')->paginate(5);
         return view('users.index',compact('users'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
