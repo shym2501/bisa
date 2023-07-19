@@ -39,7 +39,9 @@
         </div>
 
         @stack('modals')
+        @stack('scripts')
 
         @livewireScripts
+        {{ $script ?? '' }}
     </body>
 </html>

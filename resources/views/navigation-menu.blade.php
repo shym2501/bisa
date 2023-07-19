@@ -18,7 +18,7 @@
                     <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                         {{ __('Manage Users') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                    <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
                         {{ __('Manage Roles') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
