@@ -101,64 +101,6 @@
 
                           <div class="border-t border-gray-100"></div>
 
-                          <!-- Team Management -->
-                          @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                          <div class="block px-4 py-2 text-xs text-gray-400">
-                              {{ __('Manage Team') }}
-                          </div>
-
-                          <li class="flex">
-                              <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="/teams/{{ Auth::user()->currentTeam->id }}">
-                                  <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                      </path>
-                                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                  </svg>
-                                  <span>{{ __('Team Settings') }}</span>
-                              </a>
-                          </li>
-                          @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                          <li class="flex">
-                              <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="/teams/create">
-                                  <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                      </path>
-                                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                  </svg>
-                                  <span>{{ __('Create New Team') }}</span>
-                              </a>
-                          </li>
-                          @endcan
-
-                          <div class="border-t border-gray-100"></div>
-
-                          <!-- Team Switcher -->
-                          <div class="block px-4 py-2 text-xs text-gray-400">
-                              {{ __('Switch Teams') }}
-                          </div>
-
-                          @foreach (Auth::user()->allTeams() as $team)
-                          <form method="POST" action="/current-team">
-                              @method('PUT')
-                              @csrf
-                              <!-- Hidden Team ID -->
-                              <input type="hidden" name="team_id" value="{{ $team->id }}">
-
-                              <li class="flex">
-                                  <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
-
-                                      <svg class="w-5 h-5 mr-2 @if (Auth::user()->isCurrentTeam($team)) text-green-400 @else text-gray-400 @endif" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                      </svg>
-                                      <span>{{ $team->name }}</span>
-                                  </a>
-                              </li>
-                          </form>
-                          @endforeach
-                          @endif
-
-                          <div class="border-t border-gray-100"></div>
-
                           <form method="POST" action="{{ route('logout') }}">
                               @csrf
                               <li class="flex">
