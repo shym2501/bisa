@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('gender', ['Laki-laki', 'Perempuan'])->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('job')->nullable();
+            $table->text('address')->nullable();
+            $table->text('about')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
